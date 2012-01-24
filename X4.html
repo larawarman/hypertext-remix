@@ -1,0 +1,103 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<title>C</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script type= "text/javascript" src="js/jquery.js"></script>
+<script type= "text/javascript" src="js/htrmx1.js"></script>
+<script type= "text/javascript" src="js/toggle.js"></script>
+</head>
+<body id="X2">
+<audio id="7" src="audio/7.mp3" preload="auto"></audio>
+<div class="wrapper">
+	<img src="bgWhite.png" />
+
+	<div id="setSpeed">
+	  <p class="reg" onclick="getScrollXY();">*click to set speed*</p>
+	</div>
+
+	<div id="footerX">
+		<div id="X4" class="playTri" onclick="go()">&#x25BC;</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	//////SOUND//////
+		var channel_max = 6;										// number of channels
+		audiochannels = new Array();
+		for (a=0;a<channel_max;a++) {									// prepare the channels
+				audiochannels[a] = new Array();
+				audiochannels[a]['channel'] = new Audio();						// create a new audio object
+				audiochannels[a]['finished'] = -1;							// expected end time for this channel
+		}
+		function playSound(s) {
+			for (a=0;a<audiochannels.length;a++) {
+				thistime = new Date();
+				if (audiochannels[a]['finished'] < thistime.getTime()) {			// is this channel finished?
+					audiochannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration*1000;
+					audiochannels[a]['channel'].src = document.getElementById(s).src;
+					audiochannels[a]['channel'].load();
+					audiochannels[a]['channel'].play();
+					break;
+				}
+			}
+		}
+	//////MOVEMENT//////
+	    var scrollX=0;
+	    var scrollY=0;
+	    var hy=0;
+	    var hx = 0;
+	    var interval=30;
+
+
+	    function getScrollXY() {
+
+			  if( typeof( window.pageYOffset ) == 'number' ) {
+			    //Netscape compliant
+			    scrollY = window.pageYOffset;
+			    scrollX = window.pageXOffset;
+			  } else if( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
+			    //DOM compliant
+			    scrollY = document.body.scrollTop;
+			    scrollX = document.body.scrollLeft;
+			  } else if( document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
+			    //IE6 standards compliant mode
+			    scrollY = document.documentElement.scrollTop;
+			    scrollX = document.documentElement.scrollLeft;
+			  }			
+			  hy = Math.round((scrollY +10)/10);
+		}
+
+		function rotate( box ) {
+			box.style.webkitTransform = box.style.webkitTransform == "rotate(180deg)" ? "rotate(0deg)" : "rotate(180deg)";
+			box.style.webkitTransition = '-webkit-transform .5s';
+		}
+		
+		// This function moves the window by (hx, hy) every interval ms.
+		// It bounces whenever the window reaches the edge of the screen.	
+		function move() {
+		    
+		    if (window.closed) {
+		        clearInterval(intervalID);
+		        return;
+		    }
+		    
+		    if ((y+hy > (screen.availHeight - h)) || (y+hy < 0)) {
+		    	hy = -hy;
+				playSound('7');
+				var tri = document.getElementById('footerX');
+				rotate(tri);
+		    }
+	  	    y += hy;
+	  	    
+		 	window.moveTo(x+cw+(unitX*2),y);		    	 
+	
+		}
+				
+		
+	</script>
+
+				
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<title>hypertext remix</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type= "text/javascript" src="js/jquery.js"></script>
+<script type= "text/javascript" src="js/htrmx1.js"></script>
+
+<script language="JavaScript">
+<!--
+// function to allow the changing of the window size by link
+// the width and height are passed as variables within the link
+ 
+window.moveTo(0,0);  
+window.resizeTo(screen.width,screen.height);  
+
+
+function resize_2_link(x,y)
+{
+window.resizeTo(x,y,scrollbar=0)
+}
+
+-->
+</script>
+</head>
+
+<body >
+<div id="home">
+	<img src="htrmxLogo.png" alt="hypertextRemix" style="padding-bottom:30px;"/>
+	<p>hypertext remix is a browser-sequencer hacked together by <a href="http://www.kellynloehr.com" target="_blank">kellyn loehr</a> and <a href="http://www.larawarman.com" target="_blank">lara warman</a></p>
+	<p>instructions: </p>
+	<ol>
+		<li>click start</li>
+		<li>adjust the scrollbar in the individual browsers to your desired speed</li>
+		<li>click "set speed"</li>
+		<li>click the triangle to play</li>
+		<li>reset browsers or quit the sequencer using the control panel in the corner</li>
+	</ol>
+	
+	<div id="letsBegin"><a>start</a></div>
+</div>
+
+<div id="controlPanel">
+	<div id="grid">
+		reset individual windows:
+		<div id="resets">
+			<div id="resetx1">&nbsp;</div>
+			<div id="resetx2"><p>A</p></div>
+			<div id="resetx3"><p>B</p></div>
+			<div id="resetx4"><p>C</p></div>
+			<div id="resetx5"><p>D</p></div>
+			<div id="resetx6"><p>E</p></div>
+			<div id="resetx7"><p>F</p></div>
+			<div id="resetx8"><p>G</p></div>
+			<div style="clear:left;"></div>
+			<div id="resety1"><p>1</p></div>
+			<div style="clear:left;"></div>
+			<div id="resety2"><p>2</p></div>
+			<div style="clear:left;"></div>
+			<div id="resety3"><p>3</p></div>
+			<div style="clear:left;"></div>
+			<div id="resety4"><p>4</p></div>
+		</div>
+	
+	<div style="position:absolute; top:60px; left:15px;width:168px;">
+		<div id="end" onclick="end()"><a href="#">end</a></div>
+		<div id="resetAll" onclick="reset()"><a href="#">reset all</a></div>
+		<div style="clear:both"></div>
+		<div style="float:right; margin-top:10px;">*adjust speed<br />with scrollbar</div>
+	</div>
+</div>
+<!--
+<div style="padding-top:30px">
+<a href="javascript:resize_2_link('200','240')"><input type="button" class="normal" value="play" onclick="play()"></a>
+</div>
+-->
+
+
+
+				
+</body>
+</html>
